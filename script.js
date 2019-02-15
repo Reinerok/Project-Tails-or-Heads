@@ -14,6 +14,9 @@ function getRandomNumber() {
     return Math.round(Math.random());
 }
 
+
+
+
 function resetButton() {
     textTails.value = '';
     textHead.value = '';
@@ -25,7 +28,7 @@ function resetButton() {
     }
 }
 
-function throwCoin(e) {
+function throwCoin(e = false) {
     text.textContent = '';
     textCondition.textContent = '';
     roll.classList.toggle('hide');
@@ -36,9 +39,16 @@ function throwCoin(e) {
         tails.classList.add('hide');
         heads.classList.add('hide');
     }
+    let test;
+    if (e !== false) {
+        test = e.target.id == 'triple';
+    } else {
+        test = false;
+    }
+
     setTimeout(() => {
         roll.classList.toggle('hide');
-        if (e.target.id == 'triple') {
+        if (test) {
             for(i=0; i < 3; i++) {
                 randNum = getRandomNumber();
                 if (randNum !== 1) {
@@ -93,3 +103,24 @@ function throwCoin(e) {
 button.addEventListener('click',throwCoin);
 reset.addEventListener('click', resetButton);
 triple.addEventListener('click',throwCoin);
+
+let myElement = document.body;
+
+var mc = new Hammer.Manager(myElement);
+
+
+// Tap recognizer with minimal 2 taps
+mc.add( new Hammer.Tap({ event: 'doubletap', taps: 2 }) );
+// Single tap recognizer
+//mc.add( new Hammer.Tap({ event: 'singletap' }) );
+
+
+// we want to recognize this simulatenous, so a quadrupletap will be detected even while a tap has been recognized.
+/*mc.get('doubletap').recognizeWith('singletap');
+// we only want to trigger a tap, when we don't have detected a doubletap
+mc.get('singletap').requireFailure('doubletap');*/
+
+
+mc.on("doubletap", function(ev) {
+    throwCoin();
+});
