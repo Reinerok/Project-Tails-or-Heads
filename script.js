@@ -7,15 +7,19 @@ let tails = document.getElementById('tails'),
     textHead = document.getElementById('textHeads'),
     textCondition = document.getElementById('textCondition'),
     reset = document.getElementById('reset'),
-    triple = document.getElementById('triple');
-
+    triple = document.getElementById('triple'),
+    panel = document.getElementById('panel'),
+    main = document.querySelector('.main');
 
 function getRandomNumber() {
     return Math.round(Math.random());
 }
 
-
-
+function togglePanel() {
+    for(let i = 0; i < main.children.length; i++) {
+    main.children[i].classList.toggle('hide');
+    }
+}
 
 function resetButton() {
     textTails.value = '';
@@ -39,16 +43,16 @@ function throwCoin(e = false) {
         tails.classList.add('hide');
         heads.classList.add('hide');
     }
-    let test;
+    let tripleTrow;
     if (e !== false) {
-        test = e.target.id == 'triple';
+        tripleTrow = e.target.id == 'triple';
     } else {
-        test = false;
+        tripleTrow = false;
     }
 
     setTimeout(() => {
         roll.classList.toggle('hide');
-        if (test) {
+        if (tripleTrow) {
             for(i=0; i < 3; i++) {
                 randNum = getRandomNumber();
                 if (randNum !== 1) {
@@ -100,27 +104,22 @@ function throwCoin(e = false) {
     }, 3000);
 }
 
-button.addEventListener('click',throwCoin);
+button.addEventListener('click', throwCoin);
 reset.addEventListener('click', resetButton);
-triple.addEventListener('click',throwCoin);
-
-let myElement = document.body;
-
-var mc = new Hammer.Manager(myElement);
-
-
-// Tap recognizer with minimal 2 taps
-mc.add( new Hammer.Tap({ event: 'doubletap', taps: 2 }) );
-// Single tap recognizer
-//mc.add( new Hammer.Tap({ event: 'singletap' }) );
-
-
-// we want to recognize this simulatenous, so a quadrupletap will be detected even while a tap has been recognized.
-/*mc.get('doubletap').recognizeWith('singletap');
-// we only want to trigger a tap, when we don't have detected a doubletap
-mc.get('singletap').requireFailure('doubletap');*/
-
-
-mc.on("doubletap", function(ev) {
+triple.addEventListener('click', throwCoin);
+addEventListener('touchstart', (e) => {
+    if (e.target.id !== 'panel' && button.classList.contains('hide') === true) {
     throwCoin();
+    }
 });
+panel.addEventListener('click', () => {
+    panel.classList.toggle('start');
+    roll.classList.toggle('start');
+    tails.classList.toggle('start');
+    heads.classList.toggle('start');
+    tails.classList.add('hide');
+    heads.classList.add('hide');
+    text.textContent = '';
+    togglePanel();
+});
+togglePanel();

@@ -1,5 +1,5 @@
 body {
-    background: #9370db;
+    background: #046380;
 }
 button {
     display: block;
@@ -14,23 +14,35 @@ button {
 }
 .center {
   text-align:center;
-  background: linear-gradient(#0af10a,#20c236);
+  background: linear-gradient(#45FF00,#20c236);
   width: 180px;
 }
 
 .left {
   display: inline-block;
   width: 48%;
-  background: linear-gradient(#ed143d,#c2203e);
+  background: linear-gradient(#B9121B,#c2203e);
 }
 .right {
   display: inline-block;
   position: relative;
   width: 48%;
   left: 10px;
-  background: linear-gradient(#edde14,#ecde10);
+  background: linear-gradient(#FFE11A,#FD7400);
 }
 
+#panel {
+  background: linear-gradient(#374140, #1E1E20);
+  position: absolute;
+  font-size: 15px;
+  top: 0;
+}
+#panel.start {
+  left: calc(50% - 40px);
+}
+img.start {
+  margin: 200px auto;
+}
 .hide {
     display: none;
 }

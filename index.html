@@ -7,20 +7,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <button id="button" class="center">Бросить монетку</button>
-    <button id="reset" class="left">Сбросить</button>
-    <button id="triple" class="right">Бросить три раза</button>
-    <span>Условие для решки</span>
-    <input type="text" id="textTails">
-    <span>Условие для орла</span>
-    <input type="text"id="textHeads">
-    <div id="text"></div> 
-    <div id="textCondition"></div>
-    <img id="roll" class="roll hide" src="1rub.gif">
-    <img id="tails" class="hide" src="tails.png">
-    <img id="heads" class="hide" src="heads.png">
-    <script src="hammer.min.js"></script>
+    <button id="panel" class="start">Условия</button>
+    <div class="main">
+        <button id="button" class="center">Бросить монетку</button>
+        <button id="reset" class="left">Сбросить</button>
+        <button id="triple" class="right">Бросить три раза</button>
+        <span>Условие для решки</span>
+        <input type="text" id="textTails">
+        <span>Условие для орла</span>
+        <input type="text"id="textHeads">
+        <div id="text"></div> 
+        <div id="textCondition"></div>
+    </div>
+    <img id="roll" class="roll start hide" src="1rub.gif">
+    <img id="tails" class="start hide" src="tails.png">
+    <img id="heads" class="start hide" src="heads.png">
     <script src="script.js"></script>
 </body>
 </html>
