@@ -1,2 +1,2 @@
 # Project-Tails-or-Heads
-Game Tails or Heads for androin with apk files
+Game Tails or Heads for android with apk files
